@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+</head>
+<body>
+<div>
+
+    <h1>Users</h1>
+    <table>
+        <tr>
+            <th>   Name  </th>
+            <th>   Surname   </th>
+            <th>   Age  </th>
+            <th>   Password   </th>
+            <th>   Role  </th>
+            <th>   Edit user   </th>
+            <th>   Delete user   </th>
+
+        </tr>
+        <tr th:each="user : ${keyValue}">
+            <td th:text="${user.getName()}"> </td>
+            <td th:text="${user.getSurname()}"> </td>
+            <td th:text="${user.getAge()}"> </td>
+            <td th:text="${user.getPassword()}"> </td>
+            <td>
+                <span th:each="role : ${user.roles}" th:text="${role.role} +' '">
+                </span>
+            </td>
+            <td>
+                <a class="btn" th:href="@{/admin/user/{id}/edit(id=${user.getId()})}" >Edit</a>
+            </td>
+            <td>
+                <a class="btn" th:href="@{/admin/user/{id}/delete(id=${user.getId()})}" >Delete</a>
+            </td>
+        </tr>
+    </table>
+
+</div>
+<br/>
+<hr/>
+<a href="/admin/user/new">Create User</a>
+<hr/>
+<a href="/user">View</a>
+<hr/>
+<a th:href="@{/logout}">Logout</a>
+</body>
+</html>

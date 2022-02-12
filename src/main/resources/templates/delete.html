@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete User</title>
+</head>
+<body>
+
+<form th:method="DELETE" th:action="@{/admin/user/{id}(id=${user.getId()})}" th:object="${user}">
+    <p>  Delete  </p>
+    <p>  Name: <a th:text="*{name}"></a> </p>
+    <p>  Surname:  <a th:text="*{surname}"></a> </p>
+    <p>  Age:  <a th:text="*{age}"></a> </p>
+    <p>  Password:  <a th:text="*{password}"></a> </p>
+    <p>  User roles:
+    <td>
+        <th:block th:each="role : ${user.roles}">
+            <label th:text="${role.getRole()}"></label>
+        </th:block>
+    </td>
+    </p>
+    <hr/>
+    <input type="submit" value="DELETE"/>
+    <hr/>
+    <a href="/admin/user">Back</a>
+    <br/>
+    <a th:href="@{/logout}">Logout</a>
+
+</form>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <title>User</title>
+</head>
+<body>
+<h1>User, welcome spring boot security page!</h1>
+<form th:method="GET" th:action="@{user/{id}(id=${user.getId()})}" th:object="${user}">
+  <p>  Name: <a th:text="*{name}"></a> </p>
+  <p>  Surname:  <a th:text="*{surname}"></a> </p>
+  <p>  Age:  <a th:text="*{age}"></a> </p>
+  <p>  Password:  <a th:text="*{password}"></a> </p>
+  <p>  User role:
+  <td>
+    <th:block th:each="role : *{roles}">
+      <label th:text="${role.role}"></label>
+    </th:block>
+  </td>
+  </p>
+
+  <a href="/">Back</a>
+  <hr/>
+  <a href="admin">Admin</a>
+  <hr/>
+  <a th:href="@{/logout}">Logout</a>
+</form>
+</body>
+</html>
